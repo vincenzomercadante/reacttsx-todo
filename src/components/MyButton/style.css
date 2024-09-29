@@ -1,0 +1,35 @@
+button {
+  padding: var(--button-padding);
+  border-radius: var(--border-radius);
+  align-items: center;
+  color: var(--main-txt-color);
+  transition: background-color 0.3s linear;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button.button-success {
+  background-color: var(--success-color);
+}
+
+button.button-success:hover {
+  background-color: rgba(var(--success-color), 0.7);
+}
+
+button.button-warning {
+  background-color: var(--warning-color);
+}
+
+button.button-warning:hover {
+  background-color: rgba(var(--warning-color), 0.7);
+}
+
+button.button-danger {
+  background-color: var(--danger-color);
+}
+
+button.button-danger:hover {
+  background-color: rgba(var(--danger-color), 0.7);
+}
