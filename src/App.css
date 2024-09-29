@@ -1,3 +1,16 @@
+:root {
+  /* palette */
+  --main-bg-color: #333;
+  --main-txt-color: #f5f5f5;
+  --warning-color: rgb(255, 193, 7);
+  --danger-color: rgb(220, 53, 69);
+  --success-color: rgb(25, 135, 84);
+
+  /* layout */
+  --button-padding: 5px 7px;
+  --border-radius: 10px;
+}
+
 * {
   margin: 0;
   top: 0;
@@ -7,6 +20,7 @@
 #root {
   height: 100vh;
   width: 100%;
-  background-color: #333;
   overflow: hidden;
+  background-color: var(--main-bg-color);
+  font-family: Arial, Helvetica, sans-serif;
 }

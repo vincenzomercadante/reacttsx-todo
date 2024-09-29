@@ -4,7 +4,7 @@ import "./style.css";
 interface Props {
   txt: string | React.ReactNode;
   type: string;
-  onClick: () => void;
+  onClick?: (e?: any) => void;
 }
 
 const MyButton: React.FC<Props> = ({ txt, type, onClick }) => {
@@ -13,6 +13,7 @@ const MyButton: React.FC<Props> = ({ txt, type, onClick }) => {
       {/* button that accept as a parameter the text, type which decides the style of the button & onClick function */}
       <button
         onClick={onClick}
+        type={type === "save" ? "submit" : "button"}
         className={
           type === "check" || type === "save"
             ? "button-success"

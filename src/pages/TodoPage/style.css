@@ -1,7 +1,61 @@
 #todo-app-wrapper {
+  height: 100vh;
   padding: 1rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
+}
+
+h1 {
+  color: var(--main-txt-color);
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.add-todo {
+  margin-top: 1rem;
+  padding: 10px;
+  flex-grow: 1;
+  background-color: rgba(253, 253, 253, 0.8);
+  border-radius: var(--border-radius);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3),
+    /* Ombra direzionale */ 0px 6px 20px rgba(0, 0, 0, 0.5); /* Ombra ambientale più ampia */
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.input-field {
+  flex-grow: 1;
+  padding: 10px;
+  color: var(--main-bg-color);
+  background-color: rgba(253, 253, 253, 0.8);
+  border-radius: 20px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 3px;
+}
+
+.input-field input[type="text"] {
+  outline: none;
+  border: 0;
+  flex-grow: 1;
+  background-color: transparent;
+  font-size: 1.2rem;
+}
+
+.add-todo .button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.error-message {
+  font-size: 14px;
+  color: red;
+  font-weight: bold;
 }
