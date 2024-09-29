@@ -1,17 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 
 import SaveIcon from "@mui/icons-material/Save";
 import RotateLeftIcon from "@mui/icons-material/RotateLeft";
 import EditIcon from "@mui/icons-material/Edit";
+import { Grid2 as Grid } from "@mui/material";
 
 import "./style.css";
 import MyButton from "../../components/MyButton";
+import Todo from "../../components/Todo";
 
 const TodoPage: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [deleteds, setDeleteds] = useState<Todo[]>([]);
-  const [completed, setCompleteds] = useState<Todo[]>([]);
 
   const validate = (values: any) => {
     const errors: Record<string, string> = {};
@@ -91,6 +91,61 @@ const TodoPage: React.FC = () => {
             </form>
           </nav>
         </header>
+
+        <main style={{ marginTop: 40 }}>
+          <Grid container spacing={2}>
+            {/* todo section */}
+            <Grid size={4}>
+              <section className="todos-container">
+                <h2 className="section-title">To Do</h2>
+                {todos &&
+                  todos.map((todo: Todo, index: number) => {
+                    return (
+                      todo.status === "todo" && (
+                        <React.Fragment key={index}>
+                          <Todo todo={todo} />
+                        </React.Fragment>
+                      )
+                    );
+                  })}
+              </section>
+            </Grid>
+
+            {/* completed section */}
+            <Grid size={4}>
+              <section className="todos-container">
+                <h2 className="section-title">Completed</h2>
+                {todos &&
+                  todos.map((todo: Todo, index: number) => {
+                    return (
+                      todo.status === "done" && (
+                        <React.Fragment key={index}>
+                          <Todo todo={todo} />
+                        </React.Fragment>
+                      )
+                    );
+                  })}
+              </section>
+            </Grid>
+
+            {/* deleted section */}
+            <Grid size={4}>
+              <section className="todos-container">
+                <h2 className="section-title">Deleted</h2>
+                {todos &&
+                  todos.map((todo: Todo, index: number) => {
+                    return (
+                      todo.status === "deleted" && (
+                        <React.Fragment key={index}>
+                          <Todo todo={todo} />
+                        </React.Fragment>
+                      )
+                    );
+                  })}
+              </section>
+            </Grid>
+          </Grid>
+        </main>
       </div>
     </>
   );
