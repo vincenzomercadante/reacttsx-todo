@@ -53,6 +53,7 @@ const TodoPage: React.FC = () => {
       <div id="todo-app-wrapper">
         <header>
           <h1>Welcome on React TSX Todo App</h1>
+          {/* add todo section */}
           <nav className="add-todo">
             <form onSubmit={formik.handleSubmit}>
               {/* text input and error message */}
