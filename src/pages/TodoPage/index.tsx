@@ -13,6 +13,27 @@ import Todo from "../../components/Todo";
 const TodoPage: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  // update the single todo in the state array based on the index. The new status will be specified by newStatus
+  const updateTodoinTodos = (
+    index: number,
+    newStatus: "todo" | "done" | "deleted"
+  ) => {
+    const updatedTodos: Todo[] = todos.map((todo: Todo, innerIndex: number) =>
+      index === innerIndex ? { ...todo, status: newStatus } : todo
+    );
+    setTodos(updatedTodos);
+  };
+
+  // delete the todo from the todos array based on its array index
+  const deleteTodoFromTodo = (index: number) => {
+    const updatedTodos = todos.filter(
+      (todo: Todo, innerIndex: number) => innerIndex !== index
+    );
+
+    setTodos(updatedTodos);
+  };
+
+  // validation rules for the adding todo input
   const validate = (values: any) => {
     const errors: Record<string, string> = {};
     if (!values.todoText) {
@@ -21,10 +42,10 @@ const TodoPage: React.FC = () => {
       errors.todoText = "Write a valid todo title";
     }
 
-    console.log(errors.todoText);
     return errors;
   };
 
+  // form rule with formik
   const formik = useFormik({
     initialValues: {
       todoText: "",
@@ -36,7 +57,8 @@ const TodoPage: React.FC = () => {
         status: "todo",
       };
 
-      todos.push(todo);
+      setTodos([...todos, todo]);
+      values.todoText = "";
     },
     onReset: (values) => {
       values.todoText = "";
@@ -101,9 +123,18 @@ const TodoPage: React.FC = () => {
                 {todos &&
                   todos.map((todo: Todo, index: number) => {
                     return (
+                      todo &&
                       todo.status === "todo" && (
                         <React.Fragment key={index}>
-                          <Todo todo={todo} />
+                          <Todo
+                            todo={todo}
+                            onClickFirst={() =>
+                              updateTodoinTodos(index, "done")
+                            }
+                            onClickSecond={() =>
+                              updateTodoinTodos(index, "deleted")
+                            }
+                          />
                         </React.Fragment>
                       )
                     );
@@ -118,9 +149,18 @@ const TodoPage: React.FC = () => {
                 {todos &&
                   todos.map((todo: Todo, index: number) => {
                     return (
+                      todo &&
                       todo.status === "done" && (
                         <React.Fragment key={index}>
-                          <Todo todo={todo} />
+                          <Todo
+                            todo={todo}
+                            onClickFirst={() =>
+                              updateTodoinTodos(index, "deleted")
+                            }
+                            onClickSecond={() =>
+                              updateTodoinTodos(index, "todo")
+                            }
+                          />
                         </React.Fragment>
                       )
                     );
@@ -135,9 +175,16 @@ const TodoPage: React.FC = () => {
                 {todos &&
                   todos.map((todo: Todo, index: number) => {
                     return (
+                      todo &&
                       todo.status === "deleted" && (
                         <React.Fragment key={index}>
-                          <Todo todo={todo} />
+                          <Todo
+                            todo={todo}
+                            onClickFirst={() =>
+                              updateTodoinTodos(index, "todo")
+                            }
+                            onClickSecond={() => deleteTodoFromTodo(index)}
+                          />
                         </React.Fragment>
                       )
                     );
