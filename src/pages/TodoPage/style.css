@@ -27,18 +27,20 @@ form {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: var(--add-todo-gap);
 }
 
 .input-field {
   flex-grow: 1;
-  padding: 10px;
+  padding: var(--main-padding);
   color: var(--main-bg-color);
-  background-color: rgba(253, 253, 253, 0.8);
-  border-radius: 20px;
+  background-color: var(--secondary-bg-color);
+  border-radius: var(--secondary-border-radius);
   display: flex;
-  gap: 10px;
-  margin-bottom: 3px;
+  gap: var(--small-gap);
+  margin-bottom: var(--space-input-error);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    /* Ombra direzionale */ 0px 1px 2px rgba(0, 0, 0, 0.24); /* Ombra ambientale */
 }
 
 .input-field input[type="text"] {
@@ -46,16 +48,16 @@ form {
   border: 0;
   flex-grow: 1;
   background-color: transparent;
-  font-size: 1.2rem;
+  font-size: var(--input-font-size);
 }
 
 .add-todo .button-container {
   display: flex;
-  gap: 10px;
+  gap: var(--small-gap);
 }
 
 .error-message {
-  font-size: 14px;
-  color: red;
+  font-size: var(--error-font-size);
+  color: var(--danger-color);
   font-weight: bold;
 }
